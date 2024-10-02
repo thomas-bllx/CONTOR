@@ -1,6 +1,6 @@
 # CONTOR: Benchmarking Strategies for Completing Ontologies with Plausible Missing Rules
 
-Models for QLoRa:
+Models uses with QLoRa:
 
     * meta-llama/Llama-2-7b-hf
     * meta-llama/Llama-2-7b-chat-hf
@@ -14,7 +14,7 @@ Models for QLoRa:
     * meta-llama/Meta-Llama-3-8B
     * meta-llama/Meta-Llama-3-8B-Instruct
 
-Models for unsloth:
+Models uses with unsloth:
 
     * unsloth/mistral-7b-v0.3-bnb-4bit
     * unsloth/mistral-7b-instruct-v0.3-bnb-4bit
@@ -24,6 +24,6 @@ Models for unsloth:
     * unsloth/gemma-7b-bnb-4bit
     * unsloth/gemma-7b-it-bnb-4bit
 
-Exemple of xp:
+Example of a command line:
 
 py main.py --theme all --model_name meta-llama/Llama-2-7b-hf --quantize qlora --prompt 0 --dataset untyped --splited 0 --output ./output
