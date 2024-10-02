@@ -1,4 +1,4 @@
-# CONTOR
+# CONTOR: Benchmarking Strategies for Completing Ontologies with Plausible Missing Rules
 
 Models for QLoRa:
 
