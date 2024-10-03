@@ -24,6 +24,15 @@ Models uses with unsloth:
     * unsloth/gemma-7b-bnb-4bit
     * unsloth/gemma-7b-it-bnb-4bit
 
-Example of a command line:
+Examples datasets (untyped/train.json):
 
+    {
+      "v_sub_concept": "bauxite", 
+      "v_super_concept": "mining product", 
+      "label": 1, 
+      "rule": "body=Geography.Bauxite, head=economy.MiningProduct"
+    }
+
+Example of a command line:   
+   
 py main.py --theme all --model_name meta-llama/Llama-2-7b-hf --quantize qlora --prompt 0 --dataset untyped --splited 0 --output ./output
