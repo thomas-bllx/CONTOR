@@ -1,0 +1,79 @@
+# please see OpenPrompt for more information:
+# https://thunlp.github.io/OpenPrompt/notes/configuration.html
+
+dataset:
+  path: ./datasets/untyped/wine
+#  name: foodon-complex-SI # name of the dataset
+  task_name: wine  # OPTIONS: "bimnli", "schemaorg-atomic-SI", "doid-atomic-SI", "foodon-atomic-SI", "foodon-complex-SI", "go-atomic-SI", "go-complex-SI"
+                  # the source code utilises `task_name` to load a dataset from Huggingface
+
+logging:
+  path_base: ./log  # path to save everything
+
+task: classification
+
+dataloader:
+  max_seq_length: 128
+
+plm:
+  model_name: roberta
+  model_path: roberta-large  # huggingface model card can be used here
+  optimize:
+    freeze_para: False
+    lr: 0.00001
+    weight_decay: 0.01
+    scheduler:
+      type:
+      num_warmup_steps: 30
+
+classification:
+  metric:
+    - binary-f1
+    - precision
+    - recall
+    - accuracy  # equal to accuracy
+  loss_function: cross_entropy
+
+train:
+  num_epochs: 3 # the number of training epochs.
+  batch_size: 8
+
+test:
+  batch_size: 16
+
+dev:
+  batch_size: 8
+
+
+template: manual_template
+verbalizer: manual_verbalizer
+
+
+manual_template:
+  choice: 0
+  file_path: ./scripts/si_templates.txt # path/to/si_templates.txt  # see DeepOnto/scripts/ontolama/si_templates.txt
+
+manual_verbalizer:
+  choice: 0
+  file_path: ./scripts/label_words.jsonl # path/to/label_words.jsonl  # see DeepOnto/scripts/ontolama/label_words.jsonl
+
+environment:
+  num_gpus: 1
+  cuda_visible_devices: [0]
+  local_rank: 0
+
+learning_setting: full
+
+few_shot:
+  parent_config: learning_setting
+  few_shot_sampling: sampling_from_train
+
+sampling_from_train:
+  parent_config: few_shot_sampling
+  num_examples_per_label: 2
+  also_sample_dev: True
+  num_examples_per_label_dev: 2
+  seed:
+    - 6666
+    - 7777
+    - 8888
